@@ -1,7 +1,0 @@
- minio:
-    url: http://www.mystreet.top
-    sort: 9000
-    accesskey: mystreet
-    secretkey: mystreet
-    bucket: images
-
