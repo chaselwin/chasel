@@ -1,0 +1,12 @@
+package com.chasel.family.constant;
+
+import java.io.Serializable;
+
+public class FamilyConstant implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	public static final String FAMILY = "family";
+
+	public static final String OBJECT_NULL = "非法输入";
+}

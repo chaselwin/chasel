@@ -1,0 +1,70 @@
+package com.chasel.family.service.impl;
+
+import static com.chasel.family.constant.FamilyConstant.OBJECT_NULL;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.chasel.common.constant.CodeConstants;
+import com.chasel.common.exception.DuplicateRecordException;
+import com.chasel.family.dao.IImageDao;
+import com.chasel.family.service.IImageService;
+import com.chasel.family.vo.Image;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
+@Service
+public class ImageService implements IImageService {
+
+	private static final String MSG_ID_NULL = "照片ID不能为空";
+	private static final String MSG_IMAGE_NULL = "照片信息不能为空";
+
+	@Autowired
+	private IImageDao imageMapper;
+
+	@Override
+	public void save(Image image) {
+		Objects.requireNonNull(image, MSG_IMAGE_NULL);
+		imageMapper.save(image);
+	}
+
+	@Override
+	public void delete(int id) {
+		Objects.requireNonNull(id, MSG_ID_NULL);
+		imageMapper.delete(id);
+	}
+
+	@Override
+	public void update(Image image) {
+		Objects.requireNonNull(image, MSG_IMAGE_NULL);
+		Objects.requireNonNull(image.getId(), MSG_ID_NULL);
+		imageMapper.update(image);
+	}
+
+	@Override
+	public List<Image> findAll(Image image) {
+		return imageMapper.findAll(image);
+	}
+
+	@Override
+	public Image findById(int id) {
+		Objects.requireNonNull(id, MSG_ID_NULL);
+		return imageMapper.findById(id);
+	}
+
+	@Override
+	public PageInfo<Image> listPage(Image image, PageInfo<Image> pageInfo) throws DuplicateRecordException {
+		if (image == null || pageInfo == null) {
+			throw new DuplicateRecordException(CodeConstants.ERR_CODE_403, OBJECT_NULL);
+		}
+		List<Image> list = new ArrayList<>();
+		PageHelper.startPage(pageInfo.getPageNum(), pageInfo.getPageSize());
+		list = imageMapper.findAll(image);
+		return new PageInfo<Image>(list);
+	}
+
+}

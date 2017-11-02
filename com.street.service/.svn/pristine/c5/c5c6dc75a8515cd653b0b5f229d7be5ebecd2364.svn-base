@@ -1,0 +1,63 @@
+package com.chasel.family.service.impl;
+
+import java.util.List;
+import java.util.Objects;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.chasel.common.exception.DuplicateRecordException;
+import com.chasel.family.dao.IUserDao;
+import com.chasel.family.service.IUserService;
+import com.chasel.family.vo.User;
+
+@Service
+public class UserService implements IUserService {
+
+	private static final String MSG_ID_NULL = "用户ID不能为空";
+	private static final String MSG_USER_NULL = "用户信息不能为空";
+
+	@Autowired
+	private IUserDao userMapper;
+
+	@Override
+	public void save(User user) {
+		Objects.requireNonNull(user, MSG_USER_NULL);
+		if (userMapper.findById(user.getId()) != null) {
+			DuplicateRecordException msg = new DuplicateRecordException("该id已存在");
+			throw msg;
+		}
+		userMapper.save(user);
+	}
+
+	@Override
+	public void delete(int id) {
+		Objects.requireNonNull(id, MSG_ID_NULL);
+		userMapper.delete(id);
+	}
+
+	@Override
+	public void update(User user) {
+		Objects.requireNonNull(user, MSG_USER_NULL);
+		Objects.requireNonNull(user.getId(), MSG_ID_NULL);
+		userMapper.update(user);
+	}
+
+	@Override
+	public List<User> findAll(User user) {
+		return userMapper.findAll(user);
+	}
+
+	@Override
+	public User findById(int id) {
+		Objects.requireNonNull(id, MSG_ID_NULL);
+		return userMapper.findById(id);
+	}
+
+	@Override
+	public User login(String account, String password) {
+
+		return userMapper.login(account, password);
+	}
+
+}

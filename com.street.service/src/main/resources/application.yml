@@ -1,0 +1,41 @@
+mybatis:
+    mapper-locations:  
+    - classpath:*.xml
+    type-aliases-Package: com.chasel.street.vo
+spring:
+    http:    
+        multipart:
+            maxFileSize: 5Mb
+            maxRequestSize: 50Mb
+   
+minio:
+    url: http://localhost
+    sort: 9000
+    accesskey: mystreet
+    secretkey: mystreet
+    bucket: family
+    
+    
+dbcp:
+    datasource:
+       jdbcUrl: jdbc:mysql://localhost:3306/family?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&useSSL=false
+       user: root
+       password: chasel#123
+       driverClass: com.mysql.jdbc.Driver
+       #初试连接数
+       initialSize: 30
+       #最大活跃数
+       maxTotal: 30
+       #最大idle数
+       maxIdle: 10
+       #最小idle数
+       minIdle: 5
+       #最长等待时间(毫秒)
+       maxWaitMillis: 1000
+       #程序中的连接不使用后是否被连接池回收(该版本要使用removeAbandonedOnMaintenance和removeAbandonedOnBorrow)
+       #removeAbandoned: true
+       removeAbandonedOnMaintenance: true
+       removeAbandonedOnBorrow: true
+       #连接在所指定的秒数内未使用才会被删除(秒)(为配合测试程序才配置为1秒)
+       removeAbandonedTimeout: 1
+

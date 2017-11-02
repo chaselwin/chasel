@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="httpApp" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="shortcut icon" href="../assets/ico/favicon.html">
+    <link href="../assets/css/bootstrap.css" rel="stylesheet">
+    <link href="../assets/css/theme.css" rel="stylesheet">
+    <link href="../assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../assets/css/alertify.css" rel="stylesheet">
+    <link rel="Favicon Icon" href="../assets/ico/favicon.ico">
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div ng-controller="loginCtrl" id="wrap">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span12">
+          	<div class="row-fluid">
+				<div class="widget container-narrow">
+					<div class="widget-header">
+						<i class="icon-user"></i>
+						<h5>Login to your account</h5>
+					</div>  
+					<div class="widget-body clearfix" style="padding:25px;">
+		      			<form ng-submit="login()">
+							<div class="control-group">
+								<div class="controls">
+									<input class="btn-block" type="text" ng-model="user.account"  placeholder="Account">
+								</div>
+							</div>
+							<div class="control-group">
+								<div class="controls">
+									<input class="btn-block" type="password" ng-model="user.password" placeholder="Password">
+								</div>
+							</div>
+						<div>
+							<div align="left">
+								<span style="color: red">{{msg}}</span>
+							</div>
+							<div align="right">
+								<button type="submit" class="btn btn-success">Sign in</button>
+							</div>
+						</div>
+		      			</form>
+					</div>  
+				</div>  
+        	</div><!--/row-fluid-->
+        </div><!--/span10-->
+      </div><!--/row-fluid-->
+    </div><!--/.fluid-container-->
+    </div><!-- wrap ends-->
+
+    <script type="text/javascript" src="../js/angular.js"></script>
+    <script type="text/javascript" src="../js/login.js"></script>
+  </body>
+</html>
