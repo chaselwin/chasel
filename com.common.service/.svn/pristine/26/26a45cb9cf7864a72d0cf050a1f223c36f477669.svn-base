@@ -1,0 +1,19 @@
+package com.chasel.common.constant;
+
+public enum ResponseStatus {
+
+	SUCCESS("SUCCESS"),
+
+	FAIL("FAIL");
+
+	private String code;
+
+	public String getCode() {
+		return code;
+	}
+
+	private ResponseStatus(String code) {
+		this.code = code;
+	}
+
+}

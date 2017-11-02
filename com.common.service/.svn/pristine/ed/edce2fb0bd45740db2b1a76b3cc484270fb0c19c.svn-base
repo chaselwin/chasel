@@ -1,0 +1,18 @@
+package com.chasel.common.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+public interface IBaseDao<T> {
+	
+	public void save(T t);
+
+	public void delete(@Param("id") int id);
+
+	public void update(T t);
+
+	public List<T> findAll(T t);
+
+	public T findById(@Param("id") int id);
+}
