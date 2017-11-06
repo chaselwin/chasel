@@ -3,6 +3,7 @@ package com.chasel.common.constant;
 import org.apache.log4j.Logger;
 
 import com.chasel.common.exception.DuplicateRecordException;
+import com.chasel.common.util.I18NSupport;
 import com.github.pagehelper.PageInfo;
 
 /**
@@ -11,7 +12,7 @@ import com.github.pagehelper.PageInfo;
  * @author chasel
  *
  */
-public class BaseController {
+public class BaseController extends I18NSupport {
 
 	private Logger log = Logger.getLogger(BaseController.class);
 
