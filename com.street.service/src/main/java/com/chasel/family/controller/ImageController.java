@@ -1,13 +1,13 @@
 package com.chasel.family.controller;
 
-import static com.chasel.family.constant.FamilyConstant.ADD_FAIL;
-import static com.chasel.family.constant.FamilyConstant.ADD_SUCCESS;
-import static com.chasel.family.constant.FamilyConstant.DEL_FAIL;
-import static com.chasel.family.constant.FamilyConstant.DEL_SUCCESS;
-import static com.chasel.family.constant.FamilyConstant.QUERY_FAIL;
-import static com.chasel.family.constant.FamilyConstant.QUERY_SUCCESS;
-import static com.chasel.family.constant.FamilyConstant.UPDATE_FAIL;
-import static com.chasel.family.constant.FamilyConstant.UPDATE_SUCCESS;
+import static com.chasel.family.constant.MessagesConstant.ADD_FAIL;
+import static com.chasel.family.constant.MessagesConstant.ADD_SUCCESS;
+import static com.chasel.family.constant.MessagesConstant.DEL_FAIL;
+import static com.chasel.family.constant.MessagesConstant.DEL_SUCCESS;
+import static com.chasel.family.constant.MessagesConstant.QUERY_FAIL;
+import static com.chasel.family.constant.MessagesConstant.QUERY_SUCCESS;
+import static com.chasel.family.constant.MessagesConstant.UPDATE_FAIL;
+import static com.chasel.family.constant.MessagesConstant.UPDATE_SUCCESS;
 
 import javax.validation.Valid;
 
@@ -54,7 +54,7 @@ public class ImageController extends BaseController {
 
 		return value(() -> {
 			return imageService.findAll(new Image());
-		}, QUERY_SUCCESS, QUERY_FAIL);
+		}, getMassage(QUERY_SUCCESS), getMassage(QUERY_FAIL));
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class ImageController extends BaseController {
 
 		return process(() -> {
 			imageService.save(file, type, title, memo, creator);
-		}, ADD_SUCCESS, ADD_FAIL);
+		}, getMassage(ADD_SUCCESS), getMassage(ADD_FAIL));
 	}
 
 	/** 删除文件 **/
@@ -80,7 +80,7 @@ public class ImageController extends BaseController {
 
 		return process(() -> {
 			imageService.delete(id);
-		}, DEL_SUCCESS, DEL_FAIL);
+		}, getMassage(DEL_SUCCESS), getMassage(DEL_FAIL));
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class ImageController extends BaseController {
 
 		return process(() -> {
 			imageService.update(image);
-		}, UPDATE_SUCCESS, UPDATE_FAIL);
+		}, getMassage(UPDATE_SUCCESS), getMassage(UPDATE_FAIL));
 	}
 
 }

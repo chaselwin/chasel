@@ -1,6 +1,6 @@
 package com.chasel.family.config;
 
-import static com.chasel.family.constant.FamilyConstant.FAMILY;
+import static com.chasel.family.constant.MessagesConstant.FAMILY;
 
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
