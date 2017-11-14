@@ -14,6 +14,6 @@ import org.springframework.context.annotation.Configuration;
 	@ConfigurationProperties(prefix = "dbcp.datasource")
      public DataSource dataSource()
      {
-         return DataSourceBuilder.create().type(com.mchange.v2.c3p0.ComboPooledDataSource.class).build();
+		return DataSourceBuilder.create().type(org.apache.commons.dbcp.BasicDataSource.class).build();
      }
  }
