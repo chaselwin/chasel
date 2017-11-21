@@ -12,7 +12,7 @@ import com.github.pagehelper.PageInfo;
  * @author chasel
  *
  */
-public class BaseController extends I18NSupport {
+public abstract class BaseController extends I18NSupport {
 
 	private Logger log = Logger.getLogger(BaseController.class);
 

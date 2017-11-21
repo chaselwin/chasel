@@ -28,6 +28,10 @@ import com.chasel.family.service.IImageService;
 import com.chasel.family.vo.Image;
 import com.github.pagehelper.PageInfo;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api("处理图片接口文档")
 @RestController
 @RequestMapping("/image")
 public class ImageController extends BaseController {
@@ -40,6 +44,7 @@ public class ImageController extends BaseController {
 	 * 
 	 * @return
 	 */
+	@ApiOperation("图片分页查询")
 	@RequestMapping(path = "/list/page/{pageSize}/{pageNum}", method = RequestMethod.POST, produces = "application/json")
 	public @ResponseBody PageInfo<?> listPage(@RequestBody Image image, PageInfo<Image> pageInfo) {
 
@@ -49,7 +54,8 @@ public class ImageController extends BaseController {
 	}
 
 	/** 查询所有 **/
-	@RequestMapping(path = "/findAll", method = RequestMethod.POST, produces = "application/json")
+	@ApiOperation("查询所有图片")
+	@RequestMapping(path = "/findAll", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody ResponseResult frontAll() {
 
 		return value(() -> {
@@ -64,6 +70,7 @@ public class ImageController extends BaseController {
 	 * @return
 	 * @throws Exception
 	 */
+	@ApiOperation("上传图片")
 	@RequestMapping(path = "/add", method = RequestMethod.POST, produces = "application/json")
 	public @ResponseBody ResponseResult save(@RequestParam(value = "type") String type,
 			@RequestParam(value = "creator") String creator, @RequestParam(value = "memo") String memo,
@@ -75,6 +82,7 @@ public class ImageController extends BaseController {
 	}
 
 	/** 删除文件 **/
+	@ApiOperation("删除图片")
 	@RequestMapping(path = "/delete/{id}", method = RequestMethod.DELETE, produces = "application/json")
 	public @ResponseBody ResponseResult delete(@PathVariable @Validated @Valid int id) {
 
@@ -89,8 +97,9 @@ public class ImageController extends BaseController {
 	 * @param image
 	 * @return
 	 */
+	@ApiOperation("修改图片名称")
 	@RequestMapping(path = "/update", method = RequestMethod.PUT, produces = "application/json")
-	public @ResponseBody ResponseResult update(@RequestBody @Validated @Valid Image image) {
+	public @ResponseBody ResponseResult update(@RequestBody Image image) {
 
 		return process(() -> {
 			imageService.update(image);

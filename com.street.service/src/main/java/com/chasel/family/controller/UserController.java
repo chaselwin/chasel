@@ -26,6 +26,10 @@ import com.chasel.family.service.IUserService;
 import com.chasel.family.vo.User;
 import com.github.pagehelper.PageInfo;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api("用户信息API")
 @RestController
 @RequestMapping("/user")
 public class UserController extends BaseController {
@@ -38,6 +42,7 @@ public class UserController extends BaseController {
 	 * 
 	 * @return
 	 */
+	@ApiOperation("用户分页查询")
 	@RequestMapping(path = "/list/page/{pageSize}/{pageNum}", method = RequestMethod.POST, produces = "application/json")
 	public @ResponseBody PageInfo<?> findAll(@RequestBody User user, PageInfo<User> pageInfo) {
 
@@ -50,6 +55,7 @@ public class UserController extends BaseController {
 	 * 添加用户
 	 * 
 	 */
+	@ApiOperation("添加用户")
 	@RequestMapping(path = "/add", method = RequestMethod.POST, produces = "application/json")
 	public @ResponseBody ResponseResult save(@RequestBody @Validated @Valid User user) {
 
@@ -62,6 +68,7 @@ public class UserController extends BaseController {
 	 * 根据id查询用户
 	 * 
 	 */
+	@ApiOperation("根据ID查询用户")
 	@RequestMapping(path = "/findUser/{id}", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody ResponseResult findById(@PathVariable int id) {
 
@@ -74,6 +81,7 @@ public class UserController extends BaseController {
 	 * 删除用户
 	 * 
 	 */
+	@ApiOperation("根据ID删除用户")
 	@RequestMapping(path = "/delete/{id}", method = RequestMethod.DELETE, produces = "application/json")
 	public @ResponseBody ResponseResult delete(@PathVariable @Validated @Valid int id) {
 
@@ -86,6 +94,7 @@ public class UserController extends BaseController {
 	 * 编辑用户
 	 * 
 	 */
+	@ApiOperation("编辑用户")
 	@RequestMapping(path = "/update", method = RequestMethod.PUT, produces = "application/json")
 	public @ResponseBody ResponseResult update(@RequestBody @Validated @Valid User user) {
 

@@ -1,13 +1,20 @@
 package com.chasel.family.service.impl;
 
+import static com.chasel.family.constant.MessagesConstant.ACCONT_FAIL;
+import static com.chasel.family.constant.MessagesConstant.NOT_LOGIN;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.chasel.common.constant.CodeConstants;
 import com.chasel.common.exception.DuplicateRecordException;
+import com.chasel.common.service.impl.BaseService;
 import com.chasel.family.dao.IUserDao;
 import com.chasel.family.service.IUserService;
 import com.chasel.family.vo.User;
@@ -15,10 +22,11 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 @Service
-public class UserService implements IUserService {
+public class UserService extends BaseService implements IUserService {
 
 	private static final String MSG_ID_NULL = "用户ID不能为空";
 	private static final String MSG_USER_NULL = "用户信息不能为空";
+	private static final String USER_NAME = "userName";
 
 	@Autowired
 	private IUserDao userDao;
@@ -65,9 +73,25 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public User login(String account, String password) {
+	public void login(String account, String password, HttpSession httpSession) throws DuplicateRecordException {
+		User newUser = userDao.login(account, password);
+		if (newUser == null) {
+			throw new DuplicateRecordException(getMassage(ACCONT_FAIL));
+		}
+		httpSession.setAttribute(USER_NAME, newUser.getName());
+	}
 
-		return userDao.login(account, password);
+	@Override
+	public void isLogin(HttpSession httpSession) throws DuplicateRecordException {
+		String userName = (String) httpSession.getAttribute(USER_NAME);
+		if (StringUtils.isEmpty(userName)) {
+			throw new DuplicateRecordException(getMassage(NOT_LOGIN));
+		}
+	}
+
+	@Override
+	public void logout(HttpSession httpSession) {
+		httpSession.removeAttribute(USER_NAME);
 	}
 
 }

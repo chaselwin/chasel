@@ -20,6 +20,14 @@ public class Image implements Serializable {
 	public Image() {
 	}
 
+	public Image(int id, String type, String title, String memo) {
+		super();
+		this.id = id;
+		this.type = type;
+		this.title = title;
+		this.memo = memo;
+	}
+
 	public Image(int id, String type, String name, String title, String memo, Timestamp createTime, String creator) {
 		this.id = id;
 		this.type = type;

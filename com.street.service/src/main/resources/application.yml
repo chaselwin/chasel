@@ -14,14 +14,16 @@ minio:
     accesskey: mystreet
     secretkey: mystreet
     bucket: family
-    
+
+logging.level.org.springframework.web.servlet.DispatherServlet: DEBUG
+logging.level.java.sql: DEBUG
     
 dbcp:
     datasource:
-       jdbcUrl: jdbc:mysql://localhost:3306/family?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&useSSL=false
-       user: root
+       url: jdbc:mysql://localhost:3306/family?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&useSSL=false
+       username: root
        password: chasel#123
-       driverClass: com.mysql.jdbc.Driver
+       driverClassName: com.mysql.jdbc.Driver
        #初试连接数
        initialSize: 30
        #最大活跃数

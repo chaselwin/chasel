@@ -19,6 +19,11 @@ public class DuplicateRecordException extends Exception {
 	public DuplicateRecordException() {
 	}
 
+	public DuplicateRecordException(Object errMsg) {
+		super();
+		this.errMsg = errMsg;
+	}
+
 	public DuplicateRecordException(String errCode, Object errMsg) {
 		super();
 		this.errCode = errCode;

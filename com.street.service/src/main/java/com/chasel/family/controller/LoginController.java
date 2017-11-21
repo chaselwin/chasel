@@ -1,9 +1,14 @@
 package com.chasel.family.controller;
 
+import static com.chasel.family.constant.MessagesConstant.ACCONT_SUCCESS;
+import static com.chasel.family.constant.MessagesConstant.ADD_FAIL;
+import static com.chasel.family.constant.MessagesConstant.HAS_LOGIN;
+import static com.chasel.family.constant.MessagesConstant.LOGOUT_SUCCESS;
+import static com.chasel.family.constant.MessagesConstant.NOT_LOGIN;
+
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,12 +16,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.chasel.common.constant.BaseController;
+import com.chasel.common.constant.ResponseResult;
 import com.chasel.family.service.IUserService;
 import com.chasel.family.vo.User;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api("登录信息")
 @RestController
 @RequestMapping("/login")
-public class LoginController {
+public class LoginController extends BaseController {
 
 	@Autowired
 	private IUserService userService;
@@ -29,15 +40,12 @@ public class LoginController {
 	 * @return
 	 * @throws JSONException
 	 */
+	@ApiOperation("用户登录")
 	@RequestMapping(path = "/userLogin", method = RequestMethod.POST, produces = "application/json")
-	public @ResponseBody String login(@RequestBody User user, HttpSession httpSession) throws JSONException {
-		User newUser = userService.login(user.getAccount(), user.getPassword());
-		if (newUser != null) {
-			httpSession.setAttribute("userName", newUser.getName());
-			return new JSONObject().put("message", "欢迎回来").toString();
-		} else {
-			return new JSONObject().put("message", "账号或密码不正确").toString();
-		}
+	public @ResponseBody ResponseResult login(@RequestBody User user, HttpSession httpSession) throws JSONException {
+
+		return process(() -> userService.login(user.getAccount(), user.getPassword(), httpSession),
+				getMassage(ACCONT_SUCCESS), getMassage(ADD_FAIL));
 	}
 
 	/**
@@ -47,14 +55,11 @@ public class LoginController {
 	 * @return
 	 * @throws JSONException
 	 */
-	@RequestMapping(path = "/ifLogin", method = RequestMethod.POST, produces = "application/json")
-	public @ResponseBody String ifLogin(HttpSession httpSession) throws JSONException {
-		String userName = (String) httpSession.getAttribute("userName");
-		if (userName != null && userName != "") {
-			return new JSONObject().put("message", "已登录").put("userName", userName).toString();
-		} else {
-			return new JSONObject().put("message", "未登录").toString();
-		}
+	@ApiOperation("是否登录")
+	@RequestMapping(path = "/isLogin", method = RequestMethod.POST, produces = "application/json")
+	public @ResponseBody ResponseResult isLogin(HttpSession httpSession) throws JSONException {
+
+		return process(() -> userService.isLogin(httpSession), getMassage(HAS_LOGIN), getMassage(NOT_LOGIN));
 	}
 
 	/**
@@ -64,10 +69,11 @@ public class LoginController {
 	 * @return
 	 * @throws JSONException
 	 */
+	@ApiOperation("注销登录")
 	@RequestMapping(path = "/logout", method = RequestMethod.POST, produces = "application/json")
-	public @ResponseBody String logout(HttpSession httpSession) throws JSONException {
-		httpSession.removeAttribute("userName");
-		return new JSONObject().put("message", "注销成功").toString();
+	public @ResponseBody ResponseResult logout(HttpSession httpSession) throws JSONException {
+
+		return process(() -> userService.logout(httpSession), getMassage(LOGOUT_SUCCESS), getMassage(LOGOUT_SUCCESS));
 	}
 
 }
