@@ -56,7 +56,7 @@ public class ImageController extends BaseController {
 	/** 查询所有 **/
 	@ApiOperation("查询所有图片")
 	@RequestMapping(path = "/findAll", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody ResponseResult frontAll() {
+	public @ResponseBody ResponseResult findAll() {
 
 		return value(() -> {
 			return imageService.findAll(new Image());
