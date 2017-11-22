@@ -1,7 +1,7 @@
 mybatis:
     mapper-locations:  
     - classpath:*.xml
-    type-aliases-Package: com.chasel.street.vo
+    type-aliases-Package: com.chasel.family.vo
 spring:
     http:    
         multipart:
@@ -16,7 +16,7 @@ minio:
     bucket: family
 
 logging.level.org.springframework.web.servlet.DispatherServlet: DEBUG
-logging.level.java.sql: DEBUG
+logging.level.com.chasel.family.dao: DEBUG
     
 dbcp:
     datasource:
