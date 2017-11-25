@@ -8,7 +8,7 @@ package com.chasel.common.constant;
  */
 public interface CodeConstants {
 
-	String ERR_CODE_403 = "403";
+	String ERR_CODE_99 = "99";
 
 	String ERR_CODE_500 = "500";
 

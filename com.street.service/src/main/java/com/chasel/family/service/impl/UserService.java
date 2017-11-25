@@ -34,7 +34,7 @@ public class UserService extends BaseService implements IUserService {
 	@Override
 	public void save(User user) throws DuplicateRecordException {
 		if (user == null) {
-			throw new DuplicateRecordException(CodeConstants.ERR_CODE_403, MSG_USER_NULL);
+			throw new DuplicateRecordException(CodeConstants.ERR_CODE_99, MSG_USER_NULL);
 		}
 		userDao.save(user);
 	}
@@ -42,7 +42,7 @@ public class UserService extends BaseService implements IUserService {
 	@Override
 	public void delete(int id) throws DuplicateRecordException {
 		if (findById(id) == null) {
-			throw new DuplicateRecordException(CodeConstants.ERR_CODE_403, MSG_ID_NULL);
+			throw new DuplicateRecordException(CodeConstants.ERR_CODE_99, MSG_ID_NULL);
 		} else {
 			userDao.delete(id);
 		}
@@ -51,7 +51,7 @@ public class UserService extends BaseService implements IUserService {
 	@Override
 	public void update(User user) throws DuplicateRecordException {
 		if (user == null) {
-			throw new DuplicateRecordException(CodeConstants.ERR_CODE_403, MSG_USER_NULL);
+			throw new DuplicateRecordException(CodeConstants.ERR_CODE_99, MSG_USER_NULL);
 		} else {
 			userDao.update(user);
 		}

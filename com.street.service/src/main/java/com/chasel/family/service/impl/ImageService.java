@@ -35,10 +35,10 @@ public class ImageService implements IImageService {
 	public void save(MultipartFile file, String type, String title, String memo, String creator)
 			throws DuplicateRecordException {
 		if (file == null) {
-			throw new DuplicateRecordException(CodeConstants.ERR_CODE_403, FILE_NULL);
+			throw new DuplicateRecordException(CodeConstants.ERR_CODE_99, FILE_NULL);
 		}
 		if (file.getSize() >= 5242880) {
-			throw new DuplicateRecordException(CodeConstants.ERR_CODE_403, FILE_SIZE);
+			throw new DuplicateRecordException(CodeConstants.ERR_CODE_99, FILE_SIZE);
 		} else {
 			minioService.upload(file);
 			Image image = new Image();
@@ -55,7 +55,7 @@ public class ImageService implements IImageService {
 	@Override
 	public void delete(int id) throws DuplicateRecordException {
 		if (findById(id) == null) {
-			throw new DuplicateRecordException(CodeConstants.ERR_CODE_403, MSG_ID_NULL);
+			throw new DuplicateRecordException(CodeConstants.ERR_CODE_99, MSG_ID_NULL);
 		} else {
 			Image image = findById(id);
 			minioService.remove(image.getName());
@@ -67,7 +67,7 @@ public class ImageService implements IImageService {
 	public void update(Image image) throws DuplicateRecordException {
 
 		if (findById(image.getId()) == null) {
-			throw new DuplicateRecordException(CodeConstants.ERR_CODE_403, MSG_ID_NULL);
+			throw new DuplicateRecordException(CodeConstants.ERR_CODE_99, MSG_ID_NULL);
 		} else {
 			imageDao.update(image);
 		}
@@ -94,7 +94,7 @@ public class ImageService implements IImageService {
 	@Override
 	public PageInfo<Image> listPage(Image image, PageInfo<Image> pageInfo) throws DuplicateRecordException {
 		if (image == null || pageInfo == null) {
-			throw new DuplicateRecordException(CodeConstants.ERR_CODE_403, MSG_IMAGE_NULL);
+			throw new DuplicateRecordException(CodeConstants.ERR_CODE_99, MSG_IMAGE_NULL);
 		}
 		List<Image> list = new ArrayList<>();
 		PageHelper.startPage(pageInfo.getPageNum(), pageInfo.getPageSize());
