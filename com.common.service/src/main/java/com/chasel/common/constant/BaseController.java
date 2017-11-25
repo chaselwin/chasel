@@ -50,7 +50,7 @@ public abstract class BaseController extends I18NSupport {
 		try {
 			log.info("-----Welcome to process-----");
 			run.run();
-			return new ResponseResult(ResponseStatus.SUCCESS, successMsg);
+			return new ResponseResult(ResponseStatus.SUCCESS, getMassage(successMsg));
 
 		} catch (DuplicateRecordException e) {
 			log.error("process has an error: {} {}" + e.getErrCode() + "------and-------" + e.getErrMsg());
@@ -60,7 +60,7 @@ public abstract class BaseController extends I18NSupport {
 			log.error("process has an error: {}" + e.getMessage());
 			responseMsg = failMsg;
 		}
-		return new ResponseResult(ResponseStatus.FAIL, responseMsg);
+		return new ResponseResult(ResponseStatus.FAIL, getMassage(responseMsg));
 	}
 
 	/**
@@ -76,7 +76,7 @@ public abstract class BaseController extends I18NSupport {
 		try {
 			log.info("-----Welcome to value-----");
 			Object obj = run.run();
-			return new ResponseResult(ResponseStatus.SUCCESS, successMsg, obj);
+			return new ResponseResult(ResponseStatus.SUCCESS, getMassage(successMsg), obj);
 		} catch (DuplicateRecordException e) {
 			responseMsg = (String) e.getErrMsg();
 			log.error("value has an error: {}" + e.getErrCode() + "------and-------" + e.getErrMsg());
@@ -84,6 +84,6 @@ public abstract class BaseController extends I18NSupport {
 			log.error("value has an error: {}" + e.getMessage());
 			responseMsg = failMsg;
 		}
-		return new ResponseResult(ResponseStatus.FAIL, responseMsg, null);
+		return new ResponseResult(ResponseStatus.FAIL, getMassage(responseMsg), null);
 	}
 }

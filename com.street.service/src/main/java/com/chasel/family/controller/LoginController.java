@@ -44,8 +44,7 @@ public class LoginController extends BaseController {
 	@RequestMapping(path = "/userLogin", method = RequestMethod.POST, produces = "application/json")
 	public @ResponseBody ResponseResult login(@RequestBody User user, HttpSession httpSession) throws JSONException {
 
-		return process(() -> userService.login(user.getAccount(), user.getPassword(), httpSession),
-				getMassage(ACCONT_SUCCESS), getMassage(ADD_FAIL));
+		return process(() -> userService.login(user.getAccount(), user.getPassword(), httpSession),ACCONT_SUCCESS,ADD_FAIL);
 	}
 
 	/**
@@ -59,7 +58,7 @@ public class LoginController extends BaseController {
 	@RequestMapping(path = "/isLogin", method = RequestMethod.POST, produces = "application/json")
 	public @ResponseBody ResponseResult isLogin(HttpSession httpSession) throws JSONException {
 
-		return process(() -> userService.isLogin(httpSession), getMassage(HAS_LOGIN), getMassage(NOT_LOGIN));
+		return process(() -> userService.isLogin(httpSession),HAS_LOGIN, NOT_LOGIN);
 	}
 
 	/**
@@ -73,7 +72,7 @@ public class LoginController extends BaseController {
 	@RequestMapping(path = "/logout", method = RequestMethod.POST, produces = "application/json")
 	public @ResponseBody ResponseResult logout(HttpSession httpSession) throws JSONException {
 
-		return process(() -> userService.logout(httpSession), getMassage(LOGOUT_SUCCESS), getMassage(LOGOUT_SUCCESS));
+		return process(() -> userService.logout(httpSession),LOGOUT_SUCCESS,LOGOUT_SUCCESS);
 	}
 
 }

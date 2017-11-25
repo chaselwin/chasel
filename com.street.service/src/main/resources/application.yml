@@ -13,7 +13,7 @@ mybatis:
 spring:
     http:    
         multipart:
-            maxFileSize: 5Mb
+            maxFileSize: 10Mb
             maxRequestSize: 50Mb
    
 minio:

@@ -1,13 +1,6 @@
 package com.chasel.family.controller;
 
-import static com.chasel.family.constant.MessagesConstant.ADD_FAIL;
-import static com.chasel.family.constant.MessagesConstant.ADD_SUCCESS;
-import static com.chasel.family.constant.MessagesConstant.DEL_FAIL;
-import static com.chasel.family.constant.MessagesConstant.DEL_SUCCESS;
-import static com.chasel.family.constant.MessagesConstant.QUERY_FAIL;
-import static com.chasel.family.constant.MessagesConstant.QUERY_SUCCESS;
-import static com.chasel.family.constant.MessagesConstant.UPDATE_FAIL;
-import static com.chasel.family.constant.MessagesConstant.UPDATE_SUCCESS;
+import static com.chasel.family.constant.MessagesConstant.*;
 
 import javax.validation.Valid;
 
@@ -58,9 +51,7 @@ public class ImageController extends BaseController {
 	@RequestMapping(path = "/findAll", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody ResponseResult findAll() {
 
-		return value(() -> {
-			return imageService.findAll(new Image());
-		}, getMassage(QUERY_SUCCESS), getMassage(QUERY_FAIL));
+		return value(() -> {return imageService.findAll(new Image());}, QUERY_SUCCESS, QUERY_FAIL);
 	}
 
 	/**
@@ -76,9 +67,7 @@ public class ImageController extends BaseController {
 			@RequestParam(value = "creator") String creator, @RequestParam(value = "memo") String memo,
 			@RequestParam(value = "title") String title, @RequestParam(value = "file") MultipartFile file) {
 
-		return process(() -> {
-			imageService.save(file, type, title, memo, creator);
-		}, getMassage(ADD_SUCCESS), getMassage(ADD_FAIL));
+		return process(() -> {imageService.save(file, type, title, memo, creator);}, ADD_SUCCESS, ADD_FAIL);
 	}
 
 	/** 删除文件 **/
@@ -86,9 +75,7 @@ public class ImageController extends BaseController {
 	@RequestMapping(path = "/delete/{id}", method = RequestMethod.DELETE, produces = "application/json")
 	public @ResponseBody ResponseResult delete(@PathVariable @Validated @Valid int id) {
 
-		return process(() -> {
-			imageService.delete(id);
-		}, getMassage(DEL_SUCCESS), getMassage(DEL_FAIL));
+		return process(() -> {imageService.delete(id);}, DEL_SUCCESS, DEL_FAIL);
 	}
 
 	/**
@@ -101,9 +88,7 @@ public class ImageController extends BaseController {
 	@RequestMapping(path = "/update", method = RequestMethod.PUT, produces = "application/json")
 	public @ResponseBody ResponseResult update(@RequestBody Image image) {
 
-		return process(() -> {
-			imageService.update(image);
-		}, getMassage(UPDATE_SUCCESS), getMassage(UPDATE_FAIL));
+		return process(() -> {imageService.update(image);}, UPDATE_SUCCESS, UPDATE_FAIL);
 	}
 
 }

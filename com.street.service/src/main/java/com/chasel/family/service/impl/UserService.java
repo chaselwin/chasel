@@ -76,7 +76,7 @@ public class UserService extends BaseService implements IUserService {
 	public void login(String account, String password, HttpSession httpSession) throws DuplicateRecordException {
 		User newUser = userDao.login(account, password);
 		if (newUser == null) {
-			throw new DuplicateRecordException(getMassage(ACCONT_FAIL));
+			throw new DuplicateRecordException(ACCONT_FAIL);
 		}
 		httpSession.setAttribute(USER_NAME, newUser.getName());
 	}

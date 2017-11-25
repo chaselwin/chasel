@@ -46,9 +46,7 @@ public class UserController extends BaseController {
 	@RequestMapping(path = "/list/page/{pageSize}/{pageNum}", method = RequestMethod.POST, produces = "application/json")
 	public @ResponseBody PageInfo<?> findAll(@RequestBody User user, PageInfo<User> pageInfo) {
 
-		return doQuery(() -> {
-			return userService.findAll(user, pageInfo);
-		});
+		return doQuery(() -> {return userService.findAll(user, pageInfo);});
 	}
 
 	/**
@@ -59,9 +57,7 @@ public class UserController extends BaseController {
 	@RequestMapping(path = "/add", method = RequestMethod.POST, produces = "application/json")
 	public @ResponseBody ResponseResult save(@RequestBody @Validated @Valid User user) {
 
-		return process(() -> {
-			userService.save(user);
-		}, getMassage(ADD_SUCCESS), getMassage(ADD_FAIL));
+		return process(() -> {userService.save(user);}, ADD_SUCCESS, ADD_FAIL);
 	}
 
 	/**
@@ -72,9 +68,7 @@ public class UserController extends BaseController {
 	@RequestMapping(path = "/findUser/{id}", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody ResponseResult findById(@PathVariable int id) {
 
-		return value(() -> {
-			return userService.findById(id);
-		}, getMassage(QUERY_SUCCESS), getMassage(QUERY_FAIL));
+		return value(() -> {return userService.findById(id);}, QUERY_SUCCESS, QUERY_FAIL);
 	}
 
 	/**
@@ -85,9 +79,7 @@ public class UserController extends BaseController {
 	@RequestMapping(path = "/delete/{id}", method = RequestMethod.DELETE, produces = "application/json")
 	public @ResponseBody ResponseResult delete(@PathVariable @Validated @Valid int id) {
 
-		return process(() -> {
-			userService.delete(id);
-		}, getMassage(DEL_SUCCESS), getMassage(DEL_FAIL));
+		return process(() -> {userService.delete(id);}, DEL_SUCCESS, DEL_FAIL);
 	}
 
 	/**
@@ -98,9 +90,7 @@ public class UserController extends BaseController {
 	@RequestMapping(path = "/update", method = RequestMethod.PUT, produces = "application/json")
 	public @ResponseBody ResponseResult update(@RequestBody @Validated @Valid User user) {
 
-		return process(() -> {
-			userService.update(user);
-		}, getMassage(UPDATE_SUCCESS), getMassage(UPDATE_FAIL));
+		return process(() -> {userService.update(user);}, UPDATE_SUCCESS, UPDATE_FAIL);
 	}
 
 }
