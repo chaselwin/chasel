@@ -1,7 +1,15 @@
+#mybatis配置
 mybatis:
-    mapper-locations:  
-    classpath: config.*.xml
-    type-aliases-Package: com.chasel.family.vo
+#    annotationClass: org.springframework.boot.mybatis.autoconfigure.Mapper
+#    configLocation: "mybatis-configuration.xml"
+    mapper-locations: "classpath:com/chasel/family/dao/*.xml" 
+# If the 'spring.mybatis.configLocation' property is used when the 'spring.mybatis.configurationProperties' property is ignored.
+    configuration-properties:
+      aggressiveLazyLoading: false
+      lazyLoadingEnabled: true
+      lazyLoadTriggerMethods: ""
+      mapUnderscoreToCamelCase: true
+
 spring:
     http:    
         multipart:

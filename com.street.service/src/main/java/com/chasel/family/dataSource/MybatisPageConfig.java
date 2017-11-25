@@ -1,4 +1,4 @@
-package com.chasel.family.dataSource;
+/*package com.chasel.family.dataSource;
 
 import java.util.Properties;
 
@@ -61,4 +61,4 @@ public class MybatisPageConfig implements TransactionManagementConfigurer {
     public PlatformTransactionManager annotationDrivenTransactionManager() {  
         return new DataSourceTransactionManager(dataSource);  
     }  
-} 
+} */
