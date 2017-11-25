@@ -12,10 +12,10 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @ComponentScan(basePackages = { "com.chasel.**" })
-public class FamilyApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FamilyApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 }

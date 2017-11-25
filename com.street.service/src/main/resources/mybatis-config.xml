@@ -7,7 +7,7 @@
   
     <mappers>  
         <mapper resource="com/chasel/family/dao/UserDao.xml"/>  
-        <mapper resource="com/chasel/family/dao/ImageDao.xml"/>  
+        <mapper resource="com/chasel/family/dao/ImageDao.xml"/>
     </mappers>  
   
 </configuration> 

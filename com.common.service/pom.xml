@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.chasel.common</groupId>
-  <artifactId>com.common.service</artifactId>
+  <artifactId>base.service</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>com.common.service</name>
+  <name>base.service</name>
   <url>http://maven.apache.org</url>
 
   <!-- 属性和变量 -->

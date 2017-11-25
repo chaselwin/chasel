@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.chasel.family</groupId>
-  <artifactId>com.family.service.impl</artifactId>
+  <artifactId>street.service</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>com.family.service.impl</name>
+  <name>street.service</name>
   <url>http://maven.apache.org</url>
 
   <!-- 属性和变量 -->
@@ -27,7 +27,7 @@
 
 	<dependency>
 		 <groupId>com.chasel.common</groupId>
-		 <artifactId>com.common.service</artifactId>
+		 <artifactId>base.service</artifactId>
 		 <version>0.0.1-SNAPSHOT</version>
 	</dependency>
 	
@@ -40,13 +40,6 @@
 		<groupId>mysql</groupId>
 		<artifactId>mysql-connector-java</artifactId>
 	</dependency>
-	
-	<!-- c3p0连接池 -->
-	<dependency>
-	    <groupId>c3p0</groupId>
-	    <artifactId>c3p0</artifactId>
-	    <version>0.9.1.2</version>
-	</dependency>	
 	
 	<dependency>
 	    <groupId>org.slf4j</groupId>
@@ -85,7 +78,7 @@
                         <manifest>  
                             <addClasspath>true</addClasspath>  
                             <classpathPrefix>lib/</classpathPrefix>  
-                            <mainClass>com.chasel.street.FamilyApplication</mainClass>  
+                            <mainClass>com.chasel.family.Application</mainClass>  
                         </manifest>  
                     </archive>  
                 </configuration>  

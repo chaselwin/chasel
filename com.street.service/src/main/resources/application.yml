@@ -1,6 +1,6 @@
 mybatis:
     mapper-locations:  
-    - classpath:*.xml
+    classpath: config.*.xml
     type-aliases-Package: com.chasel.family.vo
 spring:
     http:    
