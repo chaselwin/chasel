@@ -9,6 +9,11 @@ mybatis:
       lazyLoadingEnabled: true
       lazyLoadTriggerMethods: ""
       mapUnderscoreToCamelCase: true
+      
+family:
+    app:
+       contextPath: /family
+       port: 8080
 
 spring:
     http:    

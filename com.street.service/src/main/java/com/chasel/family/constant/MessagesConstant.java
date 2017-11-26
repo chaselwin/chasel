@@ -6,8 +6,6 @@ public class MessagesConstant implements Serializable {
 	// import static com.chasel.family.constant.MessagesConstant.*;
 	private static final long serialVersionUID = 1L;
 
-	public static final String FAMILY = "family";
-
 	public static final String ADD_SUCCESS = "add.success";
 
 	public static final String ADD_FAIL = "add.fail";
