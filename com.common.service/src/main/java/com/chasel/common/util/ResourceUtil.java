@@ -27,7 +27,7 @@ public class ResourceUtil {
 	
 	private static Logger log = LoggerFactory.getLogger(ResourceUtil.class);
 
-	private static final String MASSAGE_BASE = "config.massages";
+	private static final String MASSAGE_BASE = "config.messages";
 
 	private static final String LANGUAGE_DEFAULT = "zh-CN";
 
